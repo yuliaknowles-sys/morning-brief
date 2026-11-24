@@ -98,7 +98,7 @@ del { color: #A39E92; }
 .use:hover { border-color: var(--gold); }
 .use.on { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 .use.on .chain { color: var(--ink); }
-.flowbox { margin-top: 24px; background: var(--paper); border: 1px solid var(--line); padding: 28px; scroll-margin-top: 70px; }
+.flowbox { grid-column: 1 / -1; margin-top: 24px; background: var(--paper); border: 1px solid var(--line); padding: 28px; scroll-margin-top: 70px; }
 .fhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
 .ftag { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
 .fhead h3 { margin: 0; }
@@ -117,6 +117,7 @@ del { color: #A39E92; }
 .fn.me { background: var(--green); color: var(--paper); border-color: var(--green); } .fn.me .t { color: #D8E4DA; }
 .fnote { font-size: 14px; color: var(--muted); margin: 16px 0 0; border-left: 2px solid var(--gold); padding-left: 14px; }
 @media (max-width: 860px) {
+  .uses .flowbox { margin-top: 0; }
   .flow { flex-direction: column; align-items: stretch; }
   .fcol { flex-direction: column; }
   .farrow { width: auto; transform: rotate(90deg); padding: 2px 0; }
@@ -269,8 +270,8 @@ footer a { color: var(--ink); }
     <h2>The n8n workflow</h2>
     <p class="intro">It runs on its own every weekday morning; my only daily job is keeping the calendar and the board current, because the brief is only as good as what it reads.</p>
     <div class="shot">
-      <img src="n8n-workflow.png" alt="The Morning Brief workflow in n8n: a schedule trigger feeds three sources, which are combined, written up by an AI step and saved as a Gmail draft">
-      <div class="cap">The workflow in my n8n account after a successful test run.</div>
+      <a href="n8n-workflow.png" target="_blank" rel="noopener"><img src="n8n-workflow.png" alt="The Morning Brief workflow in n8n: a schedule trigger feeds three sources, which are combined, written up by an AI step and saved as a Gmail draft"></a>
+      <div class="cap">The workflow in my n8n account after a successful test run. Tap to enlarge.</div>
     </div>
     <div class="steps">
       <div class="step"><div class="n">1</div><strong>Schedule</strong><span>Starts every weekday at 6:30 AM, before anyone is at a desk.</span></div>
@@ -420,7 +421,13 @@ function showFlow(key, scroll) {
   document.querySelectorAll('.use').forEach(function (u) { u.classList.toggle('on', u.dataset.f === key); });
   if (scroll) document.getElementById('flowbox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
-document.querySelectorAll('.use').forEach(function (u) { u.addEventListener('click', function () { showFlow(u.dataset.f, true); }); });
+function placeFlow(key) {
+  var box = document.getElementById('flowbox'), grid = document.querySelector('.uses');
+  if (window.innerWidth <= 860) { grid.querySelector('.use[data-f="' + key + '"]').after(box); }
+  else if (box.parentNode === grid) { grid.after(box); }
+}
+document.querySelectorAll('.use').forEach(function (u) { u.addEventListener('click', function () { placeFlow(u.dataset.f); showFlow(u.dataset.f, true); }); });
+window.addEventListener('resize', function () { var on = document.querySelector('.use.on'); if (on) placeFlow(on.dataset.f); });
 showFlow('brief', false);
 </script>
 </body>
