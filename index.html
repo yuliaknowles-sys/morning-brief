@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morning Brief: n8n AI Automation | Yulia Knowles</title>
+<meta name="description" content="n8n automation by Yulia Knowles, Executive Personal Assistant: every weekday the CEO's calendar, open decisions and priority emails become one AI-drafted morning brief, reviewed by a person before it is sent.">
+<meta name="keywords" content="n8n, n8n workflow, n8n automation, AI workflow, AI agent, morning brief, Executive Personal Assistant, CEO support, founder support">
+<meta property="og:title" content="The Morning Brief: n8n AI Automation">
+<meta property="og:description" content="Calendar, decisions and priority emails turned into one brief, drafted by AI and reviewed before it reaches the CEO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ivory: #FAF8F3; --paper: #FFFFFF; --ink: #1C1B19; --muted: #6B675F; --line: #E4DFD3; --gold: #9C7C3C; --soft: #F2EEE4; --green: #3F6B4A; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--ivory); color: var(--ink); font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300; font-size: 17px; line-height: 1.7; }
+a { color: inherit; }
+.bar { border-bottom: 1px solid var(--line); background: var(--ivory); position: sticky; top: 0; z-index: 10; }
+.bar-inner { max-width: 1040px; margin: 0 auto; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+.bar a { text-decoration: none; color: var(--muted); }
+.bar a:hover { color: var(--ink); }
+.short { display: none; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
+h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; margin: 0; }
+h1 { font-size: clamp(42px, 7vw, 68px); line-height: 1.05; letter-spacing: -0.01em; }
+h2 { font-size: clamp(30px, 4.5vw, 40px); line-height: 1.15; margin-bottom: 18px; }
+h3 { font-size: 22px; line-height: 1.25; margin-bottom: 8px; }
+.badge { display: inline-block; margin-top: 24px; padding: 7px 16px; border: 1px solid var(--gold); color: var(--gold); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 400; }
+.hero { padding: 80px 0 56px; border-bottom: 1px solid var(--line); }
+.hero p.lead { font-size: 20px; max-width: 680px; color: var(--muted); margin: 22px 0 32px; }
+.btn { display: inline-block; padding: 14px 28px; border: 1px solid var(--ink); text-decoration: none; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 400; transition: background .2s, color .2s; color: var(--ink); }
+.btn:hover { background: var(--ink); color: var(--ivory); }
+section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+.intro { max-width: 680px; color: var(--muted); margin: 0 0 40px; }
+.note { font-size: 14px; color: var(--muted); border-left: 2px solid var(--gold); padding-left: 14px; }
+
+/* Stages */
+.tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 0; }
+.tab { border: 1px solid var(--line); border-bottom: 0; background: var(--soft); padding: 14px 12px; text-align: left; cursor: pointer; font-family: inherit; color: var(--muted); font-size: 14px; font-weight: 300; line-height: 1.4; }
+.tab b { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-bottom: 2px; }
+.tab.on { background: var(--paper); color: var(--ink); }
+.stage { display: none; background: var(--paper); border: 1px solid var(--line); padding: 32px; }
+.stage.on { display: block; }
+.stage .cap { font-size: 14px; color: var(--muted); margin: 0 0 22px; }
+.raw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.raw .src { background: var(--ivory); border: 1px solid var(--line); padding: 18px; font-size: 14px; line-height: 1.55; }
+.raw .src .h { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.raw .src p { margin: 0 0 8px; }
+.raw .src span { color: var(--muted); }
+.email { max-width: 660px; font-size: 15px; line-height: 1.65; }
+.email .hdr { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 18px; font-size: 13px; color: var(--muted); }
+.email .hdr strong { color: var(--ink); font-weight: 500; }
+.email h4 { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 400; margin: 18px 0 6px; }
+.email ul { margin: 0; padding-left: 18px; }
+.email li { margin-bottom: 4px; }
+.email p { margin: 0 0 8px; }
+mark { background: #F3E7C9; padding: 0 2px; }
+del { color: #A39E92; }
+
+/* Workflow */
+.shot { background: var(--paper); border: 1px solid var(--line); padding: 16px; }
+.shot img { width: 100%; height: auto; display: block; }
+.shot .cap { font-size: 13px; color: var(--muted); margin-top: 10px; text-align: center; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
+.step { background: var(--paper); border: 1px solid var(--line); padding: 22px; }
+.step .n { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+.step strong { font-weight: 500; display: block; margin-bottom: 4px; }
+.step span { font-size: 14px; color: var(--muted); }
+
+/* Edits */
+.edits { display: grid; gap: 16px; }
+.edit { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; background: var(--paper); border: 1px solid var(--line); padding: 22px 24px; }
+.edit .n { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; color: var(--gold); line-height: 1; }
+.edit strong { font-weight: 500; display: block; margin-bottom: 4px; }
+.edit p { margin: 0; font-size: 15px; color: var(--muted); }
+
+/* Uses */
+.uses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.use { background: var(--paper); border: 1px solid var(--line); padding: 26px 24px; }
+.use .who { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.use p { margin: 0 0 14px; font-size: 15px; }
+.use .chain { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+.use.live { border-color: var(--gold); }
+
+/* Compare */
+.compare { border-top: 1px solid var(--line); margin-top: 8px; }
+.cmp { display: grid; grid-template-columns: 150px repeat(3, minmax(0, 1fr)); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.cmp.head { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 12px 0; }
+.cmp .name { font-weight: 500; }
+.cmp .lbl { display: none; }
+.design { max-width: 720px; color: var(--muted); }
+.design p { margin: 0 0 14px; }
+footer { padding: 48px 0 64px; text-align: center; font-size: 14px; color: var(--muted); }
+footer a { color: var(--ink); }
+
+@media (max-width: 860px) {
+  .raw, .steps, .uses { grid-template-columns: 1fr; }
+  .cmp { grid-template-columns: 1fr; gap: 2px; }
+  .cmp.head { display: none; }
+  .cmp .lbl { display: inline; color: var(--gold); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 6px; }
+  .hero { padding: 56px 0 44px; }
+  section { padding: 56px 0; }
+}
+@media (max-width: 520px) {
+  .long { display: none; } .short { display: inline; }
+  .tabs { grid-template-columns: 1fr; gap: 0; }
+  .tab { border-bottom: 1px solid var(--line); }
+  .stage { padding: 22px 18px; }
+  .edit { grid-template-columns: 1fr; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-inner">
+    <a href="https://yuliaknowles.com">&larr; <span class="long">Back to Yulia's website</span><span class="short">Back</span></a>
+    <span style="color:var(--muted)">n8n &middot; AI workflow</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Portfolio project &middot; n8n automation</p>
+    <h1>The Morning Brief</h1>
+    <span class="badge">Built with n8n</span>
+    <p class="lead">Every weekday at 6:30, an n8n workflow gathers the CEO's calendar, the decisions waiting on him and his priority emails, and AI drafts them into one short brief. It lands in my drafts, not his inbox. I check it, correct it and send it by 7:30.</p>
+    <a class="btn" href="#brief">See the brief</a>
+  </div>
+</header>
+
+<section id="brief">
+  <div class="wrap">
+    <p class="eyebrow">One brief, three stages</p>
+    <h2>From scattered information to one clear page</h2>
+    <p class="intro">This is a real run of the workflow on sample data. Click through to see what n8n gathers, what the AI drafts, and what the CEO actually receives after my review.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-s="s1" role="tab"><b>Stage 1</b>What n8n gathers</button>
+      <button class="tab" data-s="s2" role="tab"><b>Stage 2</b>What the AI drafts</button>
+      <button class="tab" data-s="s3" role="tab"><b>Stage 3</b>What the CEO receives</button>
+    </div>
+
+    <div class="stage on" id="s1">
+      <p class="cap">Three sources, pulled at 6:30 on Wednesday, December 2.</p>
+      <div class="raw">
+        <div class="src">
+          <div class="h">CEO calendar today</div>
+          <p>8:30 Weekly leadership sync <span>Zoom, 45 min</span></p>
+          <p>10:00 Investor call, Northbridge Capital <span>Q4 deck to be shared</span></p>
+          <p>12:30 Lunch with Head of Product <span>Café Vico, Parkland</span></p>
+          <p>3:00 Barcelona QBR planning <span>Conference room B</span></p>
+          <p>6:15 Car to FLL <span>DL 2417 departs 8:05 PM to JFK</span></p>
+          <p><span>Weather: 82°F, rain likely after 6 pm</span></p>
+        </div>
+        <div class="src">
+          <div class="h">Asana: Needs CEO Decision</div>
+          <p>Approve Q4 investor deck <span>due 9:30 AM</span></p>
+          <p>Sign Barcelona venue contract <span>$18,400, due Friday</span></p>
+          <p>Approve pool heater repair <span>$3,200, over the $2,500 limit</span></p>
+          <p>Driver timesheet <span>52 hours vs 40 scheduled</span></p>
+        </div>
+        <div class="src">
+          <div class="h">Gmail: priority emails</div>
+          <p>Northbridge Capital <span>Asks to move the call to 10:30. Not confirmed.</span></p>
+          <p>DocuSign <span>NDA with ad network partner awaiting signature</span></p>
+          <p>CFO <span>Weekly cash report, no action needed</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage" id="s2">
+      <p class="cap">Written by the AI step in about four seconds and saved as a Gmail draft. Unedited.</p>
+      <div class="email">
+        <div class="hdr"><strong>Draft</strong> &middot; Morning brief, Wednesday, December 2, 2026</div>
+        <p>Busy day with back-to-back meetings until evening, then a flight to JFK with rain expected later.</p>
+        <h4>Needs your decision</h4>
+        <ul>
+          <li>Approve Q4 investor deck by 9:30 AM, needed before the Northbridge call (whenever it starts).</li>
+          <li>Northbridge has asked to move the 10:00 AM call to 10:30 AM, to confirm. Either way, the deck approval should happen first.</li>
+          <li>Sign Barcelona QBR venue contract ($18,400), due Friday, useful to settle before this afternoon's 3:00 PM planning session.</li>
+          <li>Approve pool heater repair ($3,200), over the standard limit so it needs your sign off.</li>
+          <li>Review driver timesheet (52 vs 40 hours) before payroll runs.</li>
+        </ul>
+        <h4>Today</h4>
+        <ul>
+          <li>8:30 AM Leadership sync, Zoom</li>
+          <li>10:00 AM Investor call with Northbridge, Zoom (time to confirm, deck must be approved first)</li>
+          <li>12:30 PM Lunch with Head of Product, Café Vico</li>
+          <li>3:00 PM Barcelona QBR planning, conference room B</li>
+          <li>6:15 PM Car to FLL for Delta DL 2417, 8:05 PM to JFK, seat 2A. Rain likely after 6 PM, so allow extra time to the airport.</li>
+        </ul>
+        <h4>For your information</h4>
+        <ul>
+          <li>NDA with ad network partner is ready for your signature in DocuSign.</li>
+          <li>CFO's weekly cash report is attached, no action needed.</li>
+        </ul>
+        <p style="margin-top:14px">Yulia</p>
+      </div>
+    </div>
+
+    <div class="stage" id="s3">
+      <p class="cap">After my review. <mark>Highlighted</mark> lines are my changes; <del>struck</del> lines were removed.</p>
+      <div class="email">
+        <div class="hdr"><strong>Sent 7:24 AM</strong> &middot; Morning brief, Wednesday, December 2, 2026</div>
+        <p>Busy day with back-to-back meetings until evening, then a flight to JFK with rain expected later.</p>
+        <h4>Needs your decision</h4>
+        <ul>
+          <li>Approve Q4 investor deck by 9:30 AM, needed before the Northbridge call.</li>
+          <li><mark>NDA with the ad network partner is waiting for your signature in DocuSign.</mark></li>
+          <li>Sign Barcelona QBR venue contract ($18,400), due Friday, useful to settle before this afternoon's 3:00 PM planning session.</li>
+          <li>Approve pool heater repair ($3,200), over the standard limit so it needs your sign off.</li>
+          <li><del>Review driver timesheet (52 vs 40 hours) before payroll runs.</del></li>
+        </ul>
+        <h4>Today</h4>
+        <ul>
+          <li>8:30 AM Leadership sync, Zoom</li>
+          <li>10:00 AM Investor call with Northbridge, Zoom. <mark>They asked to move to 10:30; I will confirm with their office by 8:00 and update your calendar.</mark></li>
+          <li>12:30 PM Lunch with Head of Product, Café Vico</li>
+          <li>3:00 PM Barcelona QBR planning, conference room B</li>
+          <li>6:15 PM Car to FLL for Delta DL 2417, 8:05 PM to JFK, seat 2A. Rain likely after 6 PM, <mark>so I moved the car to 6:00.</mark></li>
+        </ul>
+        <h4>For your information</h4>
+        <ul>
+          <li>CFO's weekly cash report is attached, no action needed.</li>
+        </ul>
+        <p style="margin-top:14px">Yulia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Behind the scenes</p>
+    <h2>The n8n workflow</h2>
+    <p class="intro">It runs on its own every weekday morning; my only daily job is keeping the calendar and the board current, because the brief is only as good as what it reads.</p>
+    <div class="shot">
+      <img src="n8n-workflow.png" alt="The Morning Brief workflow in n8n: a schedule trigger feeds three sources, which are combined, written up by an AI step and saved as a Gmail draft">
+      <div class="cap">The workflow in my n8n account after a successful test run.</div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><strong>Schedule</strong><span>Starts every weekday at 6:30 AM, before anyone is at a desk.</span></div>
+      <div class="step"><div class="n">2</div><strong>Gather, in parallel</strong><span>The CEO's calendar, the "Needs CEO Decision" column in Asana, and starred or VIP emails in Gmail.</span></div>
+      <div class="step"><div class="n">3</div><strong>Combine</strong><span>Merges the three into one package so the AI sees the whole day at once.</span></div>
+      <div class="step"><div class="n">4</div><strong>AI writes the brief</strong><span>Claude, inside n8n, with written house rules: decisions first, connections pointed out, nothing unconfirmed stated as fact, under 200 words.</span></div>
+      <div class="step"><div class="n">5</div><strong>Save as a draft</strong><span>The brief goes to my Gmail drafts. It never sends itself.</span></div>
+      <div class="step"><div class="n">6</div><strong>I review and send</strong><span>I correct it, add what only I know, and send it by 7:30.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The human step</p>
+    <h2>What I changed before sending</h2>
+    <p class="intro">The AI did well: it noticed that the deck must be approved before the investor call, and that rain affects the airport run. It still needed a person who knows the principal.</p>
+    <div class="edits">
+      <div class="edit"><div class="n">1</div><div><strong>Moved the NDA to "Needs your decision"</strong><p>A document waiting for his signature is a decision, not information. Filed under the wrong heading, it would sit for another day.</p></div></div>
+      <div class="edit"><div class="n">2</div><div><strong>Took the timesheet off his list</strong><p>A driver's overtime is mine to check against the schedule. It only reaches the CEO if something is actually wrong.</p></div></div>
+      <div class="edit"><div class="n">3</div><div><strong>Replaced "to confirm" with what I am doing about it</strong><p>He should not have to wonder when his call is. I take the follow-up, and I adjusted the car for the weather instead of just mentioning it.</p></div></div>
+    </div>
+    <p class="note" style="margin-top:28px">I automate the gathering, not the judgment.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">For a founder's office</p>
+    <h2>Where else I would use n8n</h2>
+    <p class="intro">The same pattern (gather, let AI draft, I review) works anywhere a founder's time goes into reading before deciding.</p>
+    <div class="uses">
+      <div class="use live"><div class="who">Daily &middot; built above</div><h3>Morning brief</h3><p>Calendar, open decisions and priority emails in one page before the day starts.</p><div class="chain">Calendar + Asana + Gmail &rarr; AI &rarr; my drafts</div></div>
+      <div class="use"><div class="who">Daily</div><h3>Inbox triage</h3><p>Every new email is summarized in one line and labeled urgent, needs the CEO, delegate or routine.</p><div class="chain">Gmail &rarr; AI label &rarr; Slack alert or Asana card</div></div>
+      <div class="use"><div class="who">After every meeting</div><h3>Notes to action items</h3><p>The meeting transcript becomes a short summary and owners with due dates, waiting for my check.</p><div class="chain">Zoom transcript &rarr; AI &rarr; Asana tasks</div></div>
+      <div class="use"><div class="who">Weekly</div><h3>Monday Brief</h3><p>What moved last week, what is at risk this week, and what needs the CEO, drafted from the board.</p><div class="chain">Asana + Calendar &rarr; AI &rarr; status update draft</div></div>
+      <div class="use"><div class="who">Monthly</div><h3>Investor update draft</h3><p>Key numbers from the finance sheet and highlights from the month, drafted for the CEO to edit.</p><div class="chain">Google Sheets + notes &rarr; AI &rarr; Google Doc</div></div>
+      <div class="use"><div class="who">Before travel</div><h3>Travel day pack</h3><p>Flights, car, hotel, meetings and weather at the destination, in one note the night before.</p><div class="chain">Confirmations + Calendar &rarr; AI &rarr; email</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Choosing the right tool</p>
+    <h2>Zapier, Make or n8n</h2>
+    <p class="intro">I have built a live demo in each. They overlap, so I choose by what the job needs.</p>
+    <div class="compare">
+      <div class="cmp head"><div></div><div>Zapier</div><div>Make</div><div>n8n</div></div>
+      <div class="cmp"><div class="name">Best at</div><div><span class="lbl">Zapier</span>Simple handoffs: when this happens, do that</div><div><span class="lbl">Make</span>Sorting by rules with several outcomes</div><div><span class="lbl">n8n</span>Workflows with AI that read, summarize and draft</div></div>
+      <div class="cmp"><div class="name">Where it runs</div><div><span class="lbl">Zapier</span>Zapier's cloud</div><div><span class="lbl">Make</span>Make's cloud</div><div><span class="lbl">n8n</span>n8n's cloud, or the company's own servers</div></div>
+      <div class="cmp"><div class="name">Privacy</div><div><span class="lbl">Zapier</span>Data passes through Zapier</div><div><span class="lbl">Make</span>Data passes through Make</div><div><span class="lbl">n8n</span>Can be self-hosted, so a CEO's inbox never leaves the company</div></div>
+      <div class="cmp"><div class="name">Learning curve</div><div><span class="lbl">Zapier</span>Easiest</div><div><span class="lbl">Make</span>Moderate</div><div><span class="lbl">n8n</span>Most technical, most flexible</div></div>
+      <div class="cmp"><div class="name">My demo</div><div><span class="lbl">Zapier</span><a href="https://yuliaknowles-sys.github.io/zapier-automation/">Every Request Answered</a></div><div><span class="lbl">Make</span><a href="https://yuliaknowles-sys.github.io/make-automation/">The Decision Desk</a></div><div><span class="lbl">n8n</span>The Morning Brief (this page)</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap design">
+    <p class="eyebrow">Design choices</p>
+    <h2>Why it is built this way</h2>
+    <p><strong style="font-weight:500;color:var(--ink)">A draft, never an automatic send.</strong> Anything that reaches the principal passes through me first. The workflow saves time on gathering; it does not decide what he reads.</p>
+    <p><strong style="font-weight:500;color:var(--ink)">Written house rules for the AI.</strong> The AI step follows instructions I wrote: decisions first, point out connections, mark anything unconfirmed, keep it short, no filler.</p>
+    <p><strong style="font-weight:500;color:var(--ink)">Sample data for this demo.</strong> The calendar, board and emails here are invented so no real person's information appears. In practice the three source steps connect to Google Calendar, Asana and Gmail.</p>
+    <p><strong style="font-weight:500;color:var(--ink)">Approved tools only.</strong> Before connecting AI to a principal's email or calendar, I would confirm with the CEO and the IT or security team which tools are approved, and where the data is stored.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>A portfolio demonstration by Yulia Knowles, Executive Personal Assistant.</p>
+    <p><a href="https://yuliaknowles.com">&larr; Back to Yulia's website</a></p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.tab').forEach(function (t) {
+  t.addEventListener('click', function () {
+    document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x === t); });
+    document.querySelectorAll('.stage').forEach(function (s) { s.classList.toggle('on', s.id === t.dataset.s); });
+  });
+});
+</script>
+</body>
+</html>
