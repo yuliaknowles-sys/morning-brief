@@ -93,6 +93,36 @@ del { color: #A39E92; }
 .cmp .lbl { display: none; }
 .design { max-width: 720px; color: var(--muted); }
 .design p { margin: 0 0 14px; }
+/* Workflow maps */
+.use { text-align: left; font-family: inherit; color: var(--ink); font-weight: 300; cursor: pointer; transition: border-color .2s; }
+.use:hover { border-color: var(--gold); }
+.use.on { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.use.on .chain { color: var(--ink); }
+.flowbox { margin-top: 24px; background: var(--paper); border: 1px solid var(--line); padding: 28px; scroll-margin-top: 70px; }
+.fhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.ftag { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.fhead h3 { margin: 0; }
+.flegend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.flegend i { display: inline-block; width: 10px; height: 10px; margin-right: 5px; vertical-align: -1px; border: 1px solid var(--line); }
+.k-trig { border-color: var(--gold) !important; background: #F6EFDF; } .k-app { background: var(--paper); } .k-logic { background: var(--soft); } .k-ai { background: var(--ink); border-color: var(--ink) !important; } .k-me { background: var(--green); border-color: var(--green) !important; }
+.flow { display: flex; align-items: center; overflow-x: auto; padding: 6px 2px 10px; }
+.fcol { display: flex; flex-direction: column; gap: 10px; flex: 0 0 auto; }
+.farrow { flex: 0 0 auto; width: 30px; text-align: center; color: var(--gold); font-size: 18px; }
+.fn { width: 150px; border: 1px solid var(--line); background: var(--paper); padding: 10px 12px; font-size: 13px; line-height: 1.35; }
+.fn .t { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.fn b { font-weight: 500; display: block; }
+.fn.trig { border-color: var(--gold); background: #F6EFDF; }
+.fn.logic { background: var(--soft); }
+.fn.ai { background: var(--ink); color: var(--ivory); border-color: var(--ink); } .fn.ai .t { color: #CFC8B8; }
+.fn.me { background: var(--green); color: var(--paper); border-color: var(--green); } .fn.me .t { color: #D8E4DA; }
+.fnote { font-size: 14px; color: var(--muted); margin: 16px 0 0; border-left: 2px solid var(--gold); padding-left: 14px; }
+@media (max-width: 860px) {
+  .flow { flex-direction: column; align-items: stretch; }
+  .fcol { flex-direction: column; }
+  .farrow { width: auto; transform: rotate(90deg); padding: 2px 0; }
+  .fn { width: 100%; }
+  .flowbox { padding: 20px 16px; }
+}
 footer { padding: 48px 0 64px; text-align: center; font-size: 14px; color: var(--muted); }
 footer a { color: var(--ink); }
 
@@ -271,14 +301,19 @@ footer a { color: var(--ink); }
   <div class="wrap">
     <p class="eyebrow">For a founder's office</p>
     <h2>Where else I would use n8n</h2>
-    <p class="intro">The same pattern (gather, let AI draft, I review) works anywhere a founder's time goes into reading before deciding.</p>
+    <p class="intro">The same pattern (gather, let AI draft, I review) works anywhere a founder's time goes into reading before deciding. Click any card to see how I would map it in n8n.</p>
     <div class="uses">
-      <div class="use live"><div class="who">Daily &middot; built above</div><h3>Morning brief</h3><p>Calendar, open decisions and priority emails in one page before the day starts.</p><div class="chain">Calendar + Asana + Gmail &rarr; AI &rarr; my drafts</div></div>
-      <div class="use"><div class="who">Daily</div><h3>Inbox triage</h3><p>Every new email is summarized in one line and labeled urgent, needs the CEO, delegate or routine.</p><div class="chain">Gmail &rarr; AI label &rarr; Slack alert or Asana card</div></div>
-      <div class="use"><div class="who">After every meeting</div><h3>Notes to action items</h3><p>The meeting transcript becomes a short summary and owners with due dates, waiting for my check.</p><div class="chain">Zoom transcript &rarr; AI &rarr; Asana tasks</div></div>
-      <div class="use"><div class="who">Weekly</div><h3>Monday Brief</h3><p>What moved last week, what is at risk this week, and what needs the CEO, drafted from the board.</p><div class="chain">Asana + Calendar &rarr; AI &rarr; status update draft</div></div>
-      <div class="use"><div class="who">Monthly</div><h3>Investor update draft</h3><p>Key numbers from the finance sheet and highlights from the month, drafted for the CEO to edit.</p><div class="chain">Google Sheets + notes &rarr; AI &rarr; Google Doc</div></div>
-      <div class="use"><div class="who">Before travel</div><h3>Travel day pack</h3><p>Flights, car, hotel, meetings and weather at the destination, in one note the night before.</p><div class="chain">Confirmations + Calendar &rarr; AI &rarr; email</div></div>
+      <button class="use on" data-f="brief"><div class="who">Daily &middot; built above</div><h3>Morning brief</h3><p>Calendar, open decisions and priority emails in one page before the day starts.</p><div class="chain">See the workflow &darr;</div></button>
+      <button class="use" data-f="triage"><div class="who">As emails arrive</div><h3>Inbox triage</h3><p>Every new email is summarized in one line and labeled urgent, needs the CEO, delegate or routine.</p><div class="chain">See the workflow &darr;</div></button>
+      <button class="use" data-f="notes"><div class="who">After every meeting</div><h3>Notes to action items</h3><p>The meeting transcript becomes a short summary and owners with due dates, waiting for my check.</p><div class="chain">See the workflow &darr;</div></button>
+      <button class="use" data-f="monday"><div class="who">Weekly</div><h3>Monday Brief</h3><p>What moved last week, what is at risk this week, and what needs the CEO, drafted from the board.</p><div class="chain">See the workflow &darr;</div></button>
+      <button class="use" data-f="investor"><div class="who">Monthly</div><h3>Investor update draft</h3><p>Key numbers from the finance sheet and highlights from the month, drafted for the CEO to edit.</p><div class="chain">See the workflow &darr;</div></button>
+      <button class="use" data-f="travel"><div class="who">Before travel</div><h3>Travel day pack</h3><p>Flights, car, hotel, meetings and weather at the destination, in one note the night before.</p><div class="chain">See the workflow &darr;</div></button>
+    </div>
+    <div class="flowbox" id="flowbox" aria-live="polite">
+      <div class="fhead"><div><div class="ftag" id="ftag"></div><h3 id="ftitle"></h3></div><div class="flegend"><span><i class="k-trig"></i>Trigger</span><span><i class="k-app"></i>App step</span><span><i class="k-logic"></i>Logic</span><span><i class="k-ai"></i>AI</span><span><i class="k-me"></i>My review</span></div></div>
+      <div class="flow" id="flow"></div>
+      <p class="fnote" id="fnote"></p>
     </div>
   </div>
 </section>
@@ -324,6 +359,69 @@ document.querySelectorAll('.tab').forEach(function (t) {
     document.querySelectorAll('.stage').forEach(function (s) { s.classList.toggle('on', s.id === t.dataset.s); });
   });
 });
+
+var FLOWS = {
+  brief: { tag: 'Built and tested above', title: 'Morning brief', note: 'This one is live in my n8n account; the screenshot above is the real canvas.', cols: [
+    [['trig','Schedule','Weekdays 6:30 AM']],
+    [['app','Google Calendar','Today\'s meetings'],['app','Asana','Needs CEO Decision'],['app','Gmail','Priority emails']],
+    [['logic','Merge','Combine everything']],
+    [['ai','AI','Write the brief']],
+    [['app','Gmail','Save as draft']],
+    [['me','Yulia','Review and send by 7:30']] ] },
+  triage: { tag: 'Runs on every email', title: 'Inbox triage', note: 'Runs the moment each email arrives, not once a day, so nothing urgent waits. Every run is logged, so I can check what happened to any email.', cols: [
+    [['trig','Gmail trigger','New email arrives']],
+    [['ai','AI','One-line summary and label']],
+    [['logic','Switch','Route by label']],
+    [['app','Urgent','Email alert to Yulia'],['app','Needs CEO','Asana decision card'],['app','Delegate','Forward to the right person'],['app','Routine','Label and archive']],
+    [['me','Yulia','Check urgent items right away']] ] },
+  notes: { tag: 'After every meeting', title: 'Notes to action items', note: 'The AI proposes owners and dates; I confirm them before anyone is assigned anything.', cols: [
+    [['trig','Zoom trigger','Transcript ready']],
+    [['ai','AI','Summary and action items']],
+    [['logic','Split out','One item per action']],
+    [['app','Asana','Task with owner and due date'],['app','Gmail','Draft recap for attendees']],
+    [['me','Yulia','Confirm, then send recap']] ] },
+  monday: { tag: 'Weekly', title: 'Monday Brief', note: 'Same board all week, so the brief writes itself from what already happened. My job is the judgment on what is at risk.', cols: [
+    [['trig','Schedule','Mondays 7:00 AM']],
+    [['app','Asana','Done last week, overdue, at risk'],['app','Google Calendar','This week\'s key meetings']],
+    [['logic','Merge','Combine']],
+    [['ai','AI','Draft status: on track, at risk, off track']],
+    [['app','Asana','Save as draft status update']],
+    [['me','Yulia','Edit and post by 8 AM']] ] },
+  investor: { tag: 'Monthly', title: 'Investor update draft', note: 'Numbers come straight from the finance sheet, never typed by the AI, so they cannot be invented. The CEO always edits before it goes out.', cols: [
+    [['trig','Schedule','1st business day of the month']],
+    [['app','Google Sheets','Monthly KPIs from finance'],['app','Asana','Wins and milestones']],
+    [['logic','Merge','Combine']],
+    [['ai','AI','Draft the update']],
+    [['app','Google Docs','Create draft for the CEO']],
+    [['me','Yulia','Check numbers, share with CEO']] ] },
+  travel: { tag: 'Before travel', title: 'Travel day pack', note: 'Only runs when there is a trip tomorrow. Everything he needs for the day in one email, the night before.', cols: [
+    [['trig','Schedule','Every evening, 6 PM']],
+    [['app','Google Calendar','Anything tomorrow?']],
+    [['logic','IF','Travel tomorrow?']],
+    [['app','Gmail','Flight, hotel and car confirmations'],['app','Weather','Forecast at destination']],
+    [['ai','AI','Write the travel pack']],
+    [['app','Gmail','Save as draft']],
+    [['me','Yulia','Check and send']] ] }
+};
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function showFlow(key, scroll) {
+  var f = FLOWS[key]; if (!f) return;
+  document.getElementById('ftag').textContent = f.tag;
+  document.getElementById('ftitle').textContent = f.title;
+  document.getElementById('fnote').textContent = f.note;
+  var html = '';
+  f.cols.forEach(function (col, i) {
+    if (i) html += '<div class="farrow">&rarr;</div>';
+    html += '<div class="fcol">' + col.map(function (n) {
+      return '<div class="fn ' + n[0] + '"><div class="t">' + esc(n[1]) + '</div><b>' + esc(n[2]) + '</b></div>';
+    }).join('') + '</div>';
+  });
+  document.getElementById('flow').innerHTML = html;
+  document.querySelectorAll('.use').forEach(function (u) { u.classList.toggle('on', u.dataset.f === key); });
+  if (scroll) document.getElementById('flowbox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+document.querySelectorAll('.use').forEach(function (u) { u.addEventListener('click', function () { showFlow(u.dataset.f, true); }); });
+showFlow('brief', false);
 </script>
 </body>
 </html>
